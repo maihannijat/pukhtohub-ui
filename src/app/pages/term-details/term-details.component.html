@@ -1,0 +1,78 @@
+<nb-card *ngIf="term">
+    <nb-card-body>
+        <ngb-tabset dir="rtl">
+            <ngb-tab title="معنی" [class]="tab-title">
+                <ng-template ngbTabContent>
+                    <!--         Dictionary Term -->
+                    <br class="clearfix"/>
+                    <div class="rtl">
+                        <h5 class="inline-display">{{term.term}} &nbsp;</h5>
+                        <a href="#"><i class="fa fa-volume-up rtl"></i></a>
+                        <br class="clearfix"/>
+                        <span style="font-style: italic">[{{term.term}}]</span> &nbsp;
+                        <span class="badge badge-primary">{{term.lang_id}}</span>
+                    </div>
+                    <br class="clearfix"/>
+
+                    <!-- Definitions -->
+                    <!-- <div  class="rtl"> -->
+                    <!-- <i class="fa fa-question-circle fa-2x"></i> &nbsp;
+                    <h5 class="inline-display">تشریح</h5>
+                    <br class="clearfix"/><br class="clearfix"/> -->
+                    <!-- <span *ngFor="let d of term.definitions">
+                        {{ d.definition }}
+                    </span> -->
+                    <!-- </div> -->
+
+                    <!-- Translations -->
+                    <br class="clearfix"/><br class="clearfix"/>
+                    <div class="rtl">
+                        <i class="fa fa-language fa-2x"></i> &nbsp;
+                        <h5 class="inline-display"> انګلیسی ژباړه</h5>
+                        <br class="clearfix"/><br class="clearfix"/>
+                        <ul>
+                            <li *ngFor="let t of term.translations">
+                                {{ t.translation }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Examples -->
+                    <!-- <br class="clearfix"/><br class="clearfix"/>
+                    <div class="rtl border-top">
+                        <br class="clearfix"/>
+                        <h5 class="card-title">بیلګي</h5>
+                        <span *ngFor="let e of term.examples">{{ e.example }}</span>
+                    </div> -->
+
+                    <!-- Synonyms -->
+                    <!-- <br class="clearfix"/><br class="clearfix"/>
+                    <div class="rtl"> -->
+                    <!-- <i class="fa fa-language fa-2x"></i> &nbsp; -->
+                    <!-- <h5 class="inline-display">ورته لغات</h5>
+                    <br class="clearfix"/><br class="clearfix"/>
+                    <p *ngFor="let s of term.synonyms">{{ s.synonym }}</p>
+                </div> -->
+                </ng-template>
+                <!--
+                  </ngb-tab> -->
+
+                <!-- <ngb-tab title="نوری لهجي">
+                  <ng-template ngbTabContent>
+                      <br class="clearfix"/><br class="clearfix"/>
+                      <div class="rtl">
+                          <p *ngFor="let v of term.variations">{{ v.variant }}</p>
+                      </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="انځور">
+                  <ng-template ngbTabContent>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="ویډیو">
+                  <ng-template ngbTabContent>
+                  </ng-template>-->
+            </ngb-tab>
+        </ngb-tabset>
+    </nb-card-body>
+</nb-card>

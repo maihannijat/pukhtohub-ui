@@ -1,0 +1,23 @@
+<ng-template #rt let-r="result" let-t="term">
+    <div class="result text-right">
+        <!-- <ngb-highlight [result]="r.term" [term]="t"></ngb-highlight> -->
+        <span>{{r.term}}</span>
+    </div>
+</ng-template>
+<div class="position-relative">
+    <form>
+        <input class="form-control form-control-lg"
+               name="term"
+               type="search"
+               [(ngModel)]="searchTerm"
+               [ngbTypeahead]="search"
+               [inputFormatter]="formatter"
+               [resultFormatter]="formatter"
+               (selectItem)="selectedItem($event)"
+               placement="bottom-right"
+               placeholder="لټون / Search"
+               [resultTemplate]="rt"
+               dir="rtl"/>
+        <button class="close-icon" type="reset" *ngIf="searchTerm"></button>
+    </form>
+</div>
