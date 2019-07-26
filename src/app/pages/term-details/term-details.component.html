@@ -1,19 +1,13 @@
 <nb-card *ngIf="term">
+    <nb-card-header>
+        <!--         Dictionary Term -->
+        <h4>{{term.term}}</h4>
+<!--        <span>[{{term.term}}]</span>-->
+    </nb-card-header>
     <nb-card-body>
-        <ngb-tabset dir="rtl">
-            <ngb-tab title="معنی" [class]="tab-title">
+        <ngb-tabset>
+            <ngb-tab title="ژباړه" class="tab-title">
                 <ng-template ngbTabContent>
-                    <!--         Dictionary Term -->
-                    <br class="clearfix"/>
-                    <div class="rtl">
-                        <h5 class="inline-display">{{term.term}} &nbsp;</h5>
-                        <a href="#"><i class="fa fa-volume-up rtl"></i></a>
-                        <br class="clearfix"/>
-                        <span style="font-style: italic">[{{term.term}}]</span> &nbsp;
-                        <span class="badge badge-primary">{{term.lang_id}}</span>
-                    </div>
-                    <br class="clearfix"/>
-
                     <!-- Definitions -->
                     <!-- <div  class="rtl"> -->
                     <!-- <i class="fa fa-question-circle fa-2x"></i> &nbsp;
@@ -25,11 +19,7 @@
                     <!-- </div> -->
 
                     <!-- Translations -->
-                    <br class="clearfix"/><br class="clearfix"/>
-                    <div class="rtl">
-                        <i class="fa fa-language fa-2x"></i> &nbsp;
-                        <h5 class="inline-display"> انګلیسی ژباړه</h5>
-                        <br class="clearfix"/><br class="clearfix"/>
+                    <div class="translation">
                         <ul>
                             <li *ngFor="let t of term.translations">
                                 {{ t.translation }}
