@@ -2,12 +2,14 @@ export class Term {
     id: number;
     langId: number;
     userId: number;
-    langPartId: number;
+    partSpeech: any;
+    origin: any;
     term: string;
     nativityScale: number;
-    definitions: string[];
-    examples: string[];
-    synonyms: string[];
+    definition: string;
+    examples: any[];
+    synonyms: any[];
     translations: any[];
-    variations: string[];
+    created: Date;
+    updated: Date;
 }
