@@ -41,7 +41,7 @@ export class TermSearchComponent implements OnInit {
                     }))
             ),
             tap(() => this.searching = false)
-        );
+        )
 
     formatter = (x: { term: string }) => x.term;
 
