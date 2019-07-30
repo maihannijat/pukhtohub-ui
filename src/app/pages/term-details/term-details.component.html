@@ -1,12 +1,14 @@
+<p class="add-word-request" *ngIf="!isAddMode">غواړئ چې سېستم ته ويي دننه کړئ؟ <span (click)="addTerm()">او</span></p>
+
 <nb-card *ngIf="term">
     <nb-card-header>
         <!--         Dictionary Term -->
         <h4>{{term.term}}</h4>
-<!--        <span>[{{term.term}}]</span>-->
+        <!--        <span>[{{term.term}}]</span>-->
     </nb-card-header>
     <nb-card-body>
         <ngb-tabset>
-            <ngb-tab title="ژباړه" class="tab-title">
+            <ngb-tab title="ژباړه" class="tab-title" *ngIf="!isAddMode">
                 <ng-template ngbTabContent>
                     <!-- Definitions -->
                     <!-- <div  class="rtl"> -->
@@ -62,6 +64,107 @@
                 <ngb-tab title="ویډیو">
                   <ng-template ngbTabContent>
                   </ng-template>-->
+            </ngb-tab>
+            <ngb-tab title="{{isAddMode ? 'ورزیاتول' : 'سمول'}}" class="tab-title">
+                <ng-template ngbTabContent>
+
+                    <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
+                        <p class="alert-title"><b>Oh snap!</b></p>
+                        <ul class="alert-message-list">
+                            <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+                        </ul>
+                    </nb-alert>
+
+                    <nb-alert *ngIf="messages?.length && !submitted" outline="success" role="alert">
+                        <p class="alert-title"><b>Hooray!</b></p>
+                        <ul class="alert-message-list">
+                            <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+                        </ul>
+                    </nb-alert>
+
+                    <form [formGroup]="form" *ngIf="form" (submit)="submit()">
+
+                        <div class="form-control-group">
+                            <label for="term" class="label">ويي</label>
+                            <input id="term" nbInput formControlName="term" max="50"/>
+                        </div>
+
+                        <div class="form-control-group">
+                            <label class="label">ژباړی
+                                <nb-icon icon="info-outline" nbTooltip="tip"></nb-icon>
+                            </label>
+                            <div *ngFor="let c of getControls('translations'); let i = index"
+                                 formArrayName="translations">
+                                <div [formGroupName]="i">
+                                    <input nbInput formControlName="translation" max="50"/>
+                                    <nb-icon icon="plus-outline" status="primary"
+                                             (click)="addTranslationCtrl()"></nb-icon>
+                                    <nb-icon icon="minus-outline" status="danger" (click)="removeTranslationCtrl(i)"
+                                             *ngIf="getControls('translations')?.length > 1"></nb-icon>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-control-group">
+                            <nb-select-label for="origin" class="label">سرچینه
+                                <nb-icon icon="info-outline" nbTooltip="tip"></nb-icon>
+                            </nb-select-label>
+                            <nb-select id="origin" formControlName="origin">
+                                <nb-option *ngFor="let o of origins" [value]="o">{{o.eng}}</nb-option>
+                            </nb-select>
+                        </div>
+
+                        <div class="form-control-group">
+                            <nb-select-label for="partSpeech" class="label">نوع
+                                <nb-icon icon="info-outline" nbTooltip="tip"></nb-icon>
+                            </nb-select-label>
+                            <nb-select id="partSpeech" formControlName="partSpeech">
+                                <nb-option *ngFor="let p of partsSpeech" [value]="p">{{p.eng}}</nb-option>
+                            </nb-select>
+                        </div>
+
+                        <div class="form-control-group">
+                            <label for="example" class="label">بېلګی
+                                <nb-icon icon="info-outline" nbTooltip="tip"></nb-icon>
+                            </label>
+                            <div *ngFor="let c of getControls('examples'); let i = index" formArrayName="examples">
+                                <div [formGroupName]="i">
+                                    <textarea id="example" nbInput formControlName="example" maxlength="250"></textarea>
+                                    <nb-icon icon="plus-outline" status="primary" (click)="addExampleCtrl()"></nb-icon>
+                                    <nb-icon icon="minus-outline" status="danger" (click)="removeExampleCtrl(i)"
+                                             *ngIf="getControls('examples')?.length > 1"></nb-icon>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-control-group">
+                            <label for="definition" class="label">تعریف
+                                <nb-icon icon="info-outline" nbTooltip="tip"></nb-icon>
+                            </label>
+                            <textarea id="definition" nbInput formControlName="definition" maxlength="250"></textarea>
+                        </div>
+
+                        <div class="form-control-group">
+                            <label class="label">ورته ويي
+                                <nb-icon icon="info-outline" nbTooltip="tip"></nb-icon>
+                            </label>
+                            <div *ngFor="let c of getControls('synonyms'); let i = index" formArrayName="synonyms">
+                                <div [formGroupName]="i">
+                                    <input nbInput formControlName="synonym" max="50"/>
+                                    <nb-icon icon="plus-outline" status="primary" (click)="addSynonymCtrl()"></nb-icon>
+                                    <nb-icon icon="minus-outline" status="danger" (click)="removeSynonymCtrl(i)"
+                                             *ngIf="getControls('synonyms')?.length > 1"></nb-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button nbButton status="primary"
+                                    [disabled]="submitted || !form.valid"
+                                    [class.btn-pulse]="submitted">ثبت کول
+                            </button>
+                        </div>
+                    </form>
+                </ng-template>
             </ngb-tab>
         </ngb-tabset>
     </nb-card-body>

@@ -1,10 +1,10 @@
-nb-card-header h5 {
-
-}
-
 nb-card-header span {
   font-style: italic;
   font-weight: normal;
+}
+
+form {
+  margin-top: 20px;
 }
 
 .translation {
@@ -13,4 +13,47 @@ nb-card-header span {
 
 .translation ul {
   list-style: none;
+}
+
+.form-control-group {
+  padding: 10px;
+}
+
+input, textarea, nb-select {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 2px;
+}
+
+nb-select {
+  margin-top: 12px;
+}
+
+.label {
+  display: block;
+  margin-right: 3px;
+  color: dimgray;
+}
+
+nb-icon {
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 15px;
+  margin-top: 5px;
+}
+
+.label nb-icon {
+  margin-right: 0;
+  font-size: 15px;
+  cursor: default;
+  color: darkgray;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.add-word-request {
+  padding-right: 5px;
+  font-size: 1.1rem;
 }
