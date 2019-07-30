@@ -28,4 +28,12 @@ export class TermService {
     setSelectedTerm(term) {
         this.termSource.next(term);
     }
+
+    createTerm(term) {
+        return this.httpClient.post<Term>(environment.apiUrl + 'terms', term);
+    }
+
+    updateTerm(term) {
+        return this.httpClient.post<Term>(environment.apiUrl + 'terms', term);
+    }
 }
