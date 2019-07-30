@@ -6,5 +6,7 @@
 $nb-themes: nb-register-theme((
         font-family-primary: Bahij Karim,
         font-family-secondary: Bahij Karim,
-        text-paragraph-font-size: 1.5rem
+        text-paragraph-font-size: 1.5rem,
+        text-label-font-size: 1.2rem,
+        text-label-font-weight: 300
 ), default, default);
